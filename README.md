@@ -2,7 +2,7 @@
 
 The AWS SAM template deploys three EventBridge Buses, six EventBridge Rules (2 per Bus), four SNS Topics, three SQS queues and a Lambda function.  The lambda function is an event generator which sends events to EventBridge Buses that trigger appropriate Rules sending the payload to the appropriate SNS Topic.  SQS queues are attached to the Rules as Dead Letter Queues. Appropriate permissions are granted to EventBridge to trigger the SNS Topics and the Lambda function to put events in the EventBridge.
 
-Learn more about this pattern at Serverless Land Patterns: << Add the live URL here >>
+Learn more about this pattern at Serverless Land Patterns: https://serverlessland.com
 
 Important: this application uses various AWS services and there are costs associated with these services after the Free Tier usage - please see the [AWS Pricing page](https://aws.amazon.com/pricing/) for details. You are responsible for any AWS costs incurred. No warranty is implied in this example.
 
@@ -58,7 +58,7 @@ To make this easier to understand, we use an example.  Countries report cross-bo
 
 4. The function will randomly choose any of the 3 Buses and send an event.  The events will be classified "reportable" or "non-reportable".  All "reportable" events trigger notification with the payload to the "ReserveBank SNS Topic" and another notification to the appropriate Bank Warehouse matching the Bus selected.  All "non-reportable" events do not trigger the ReserveBank SNS Topic but trigger the respective Bank Warehouse matching the Bus selected.
 
-Consider this test successful if the email address subscribed to the "ReserveBank SNS Topic" receives all notifications for all "reportable" transactions regardless of the Source/Bank.  Secondly, each bank's Transaction Warehouses SNS Topic should receive a copy of all their transactions.
+Consider this test successful if the email address subscribed to the "ReserveBank SNS Topic" receives all notifications for all "reportable" transactions regardless of the Source/Bank.  Secondly, each bank's Transaction Warehouses' SNS Topic should receive only a copy of all their transactions.
 
 ## Cleanup
 
