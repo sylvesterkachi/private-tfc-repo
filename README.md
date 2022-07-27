@@ -68,8 +68,8 @@ Lambda function will put events on the Buses to demonstrate this pattern.
 1. From the output, get the 4 SNS Topic ARNs and subscribe 4 email addresses to the SNS Topics using 
 this command structure.
 
-aws sns subscribe --topic-arn ENTER_YOUR_TOPIC_ARN --protocol email --notification-endpoint 
-ENTER_YOUR_EMAIL_ADDRESS
+`aws sns subscribe --topic-arn ENTER_YOUR_TOPIC_ARN --protocol email --notification-endpoint 
+ENTER_YOUR_EMAIL_ADDRESS`
 
 2. Click the confirmation link delivered to your emails to verify the endpoint.
 
