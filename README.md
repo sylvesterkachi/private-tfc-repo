@@ -7,7 +7,7 @@ appropriate SNS Topic.  SQS queues are attached to the Rules as Dead Letter Queu
 permissions are granted to EventBridge to trigger the SNS Topics and the Lambda function to put 
 events in the EventBridge.
 
-Learn more about this pattern at Serverless Land Patterns: << Add the live URL here >>
+Learn more about this pattern at Serverless Land Patterns: https://serverlessland.com/
 
 Important: this application uses various AWS services and there are costs associated with these 
 services after the Free Tier usage - please see the [AWS Pricing 
