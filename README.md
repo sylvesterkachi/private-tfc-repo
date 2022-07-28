@@ -21,7 +21,7 @@ Important: this application uses various AWS services and there are costs associ
     ```
 1. Change directory to the pattern directory:
     ```
-    cd _patterns-model
+    cd lambda-eventbridge-sns-sam
     ```
 1. From the command line, use AWS SAM to deploy the AWS resources for the pattern as specified in the template.yml file:
     ```
@@ -42,19 +42,24 @@ To make this easier to understand, we use an example.  Countries report cross-bo
 
 ## Testing
 
-1. From the output, get the 4 SNS Topic ARNs and subscribe 4 email addresses to the SNS Topics using this command structure.
+1. From the Cloud Formation Output, get the 4 SNS Topic ARNs and 
+subscribe 4 
+email addresses to the SNS Topics using this CLI command 
+structure.
 
 `aws sns subscribe --topic-arn ENTER_YOUR_TOPIC_ARN --protocol email --notification-endpoint ENTER_YOUR_EMAIL_ADDRESS`
 
 2. Click the confirmation link delivered to your emails to verify the endpoint.
 
 3. Send an event to EventBridge using the Lambda function:
-- Get the 3 ARNs of the EventBridge Buses from the Output.
+- Get the 3 ARNs of the EventBridge Buses from the Cloud 
+Formation Output.
 - Open the Lambda function code in your Lambda console and replace "bus_a", "bus_b" and "bus_c" with the ARNs of the Buses created the SAM template.
 - Deploy the function and "Test" on the Console
 - Alternatively, get the function name from the Cloud Formation Output and use the following CLI command to invoke the function a few times:
 
-`aws lambda invoke --function-name myfunction response.json`
+`aws lambda invoke --function-name <<your function name>> 
+response.json`
 
 4. The function will randomly choose any of the 3 Buses and send an event.  The events will be classified "reportable" or "non-reportable".  All "reportable" events trigger notification with the payload to the "ReserveBank SNS Topic" and another notification to the appropriate Bank Warehouse matching the Bus selected.  All "non-reportable" events do not trigger the ReserveBank SNS Topic but trigger the respective Bank Warehouse matching the Bus selected.
 
